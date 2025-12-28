@@ -35,10 +35,9 @@ In this project, uplift modeling is used to decide **who should receive a treatm
 
 ## Repository Structure
 
-The repository is organized to clearly separate modeling, deployment, and documentation concerns:
-
+```text
 ml-uplift-modeling-criteo/
-├── notebooks/                 # Data preparation, modeling, evaluation
+├── notebooks/                          # Data preparation, modeling, evaluation
 │   ├── 01_data_slice.ipynb
 │   ├── 02_data_preparation.ipynb
 │   ├── 03_baseline_models.ipynb
@@ -47,20 +46,21 @@ ml-uplift-modeling-criteo/
 │   ├── 06_export_model.ipynb
 │   └── 07_local_test.ipynb
 │
-├── lambda_app/                # AWS Lambda inference code
+├── lambda_app/                         # AWS Lambda inference code
 │   └── handler.py
 │
-├── models/                    # Trained model artifacts
+├── models/                             # Trained model artifacts
 │   └── uplift_tlearner_bundle.joblib
 │
-├── scripts/                   # Utility scripts
+├── scripts/                            # Utility scripts
 │   ├── build_and_push_ecr.sh
 │   └── local_api_test.sh
 │
-├── documentation/                      # Documentation
-│   └── PROJECT_WALKTHROUGH.md
+├── documentation/                      # Project documentation
+│   ├── PROJECT_WALKTHROUGH.md          # Step-by-step (Lay + Technical) explanation
+│   └── postman_collection.json         # Postman collection for API testing
 │
-├── Dockerfile                 # Lambda container image definition
+├── Dockerfile                          # Lambda container image definition
 ├── README.md
 ├── LICENSE
 └── .gitignore
@@ -210,5 +210,11 @@ This project follows a complete machine learning lifecycle:
    - Predictions return treatment probability, control probability, and uplift  
 
 This flow ensures that the model is not only accurate, but also **deployable, testable, and usable in real-world systems**.
+
+---
+
+## Final End-to-End Flow
+
+Jupyter Notebook  →  Model Training & Evaluation  →  Model Export  →  Docker Container Build  →  Amazon ECR  →  AWS Lambda  →  API Gateway  →  Postman / Client Applications
 
 ---
